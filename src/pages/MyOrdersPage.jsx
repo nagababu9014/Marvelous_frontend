@@ -66,7 +66,7 @@ useEffect(() => {
             </div>
 
             <div className="order-total">
-              ₹{order.total_amount}
+              ${order.total_amount}
             </div>
 
           </div>
