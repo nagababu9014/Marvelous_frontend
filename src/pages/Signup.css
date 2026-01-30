@@ -1,0 +1,101 @@
+/* ===== Signup Page Container ===== */
+.signup-container {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f7fb;
+}
+
+/* ===== Signup Card ===== */
+.signup-form {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Heading ===== */
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* ===== Inputs ===== */
+.signup-form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+/* ===== Signup Button ===== */
+.signup-form button {
+  width: 100%;
+  padding: 10px;
+  background: #000;
+  color: #fff;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signup-form button:hover {
+  background: #222;
+}
+
+/* ===== Footer Text ===== */
+.signup-footer {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #444;
+}
+
+/* ===== Login Link ===== */
+.signup-link {
+  color: #007bff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 20px;
+  }
+}
+.signup-hint {
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+}
+
+.signup-hint .google-link {
+  color: #1a73e8;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.signup-hint .google-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,115 @@
+/* ===================== CATEGORY PAGE LAYOUT ===================== */
+
+.category-page {
+  display: flex;
+  gap: 24px;
+  padding: 24px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===================== FILTER SIDEBAR ===================== */
+
+.filters {
+  width: 240px;
+  flex-shrink: 0;
+  border-right: 1px solid #e5e7eb;
+  padding-right: 16px;
+}
+
+.filters h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.filters button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 8px 6px;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.filters button:hover {
+  background: #f3f4f6;
+}
+
+/* ===================== PRODUCTS GRID ===================== */
+
+.products-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* ===================== EMPTY STATE ===================== */
+
+.products-grid p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===================== MOBILE (AMAZON STYLE) ===================== */
+
+@media (max-width: 1024px) {
+  .category-page {
+    padding: 16px;
+  }
+
+  .filters {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-page {
+    flex-direction: column;
+  }
+
+  .filters {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  .filters button {
+    display: inline-block;
+    width: auto;
+    margin-right: 8px;
+    background: #f3f4f6;
+    padding: 6px 12px;
+  }
+}
+.filters {
+  position: sticky;
+  top: 80px; /* navbar height */
+}
+.filters button.active {
+  background: #ff9f00;
+  color: #000;
+  font-weight: 600;
+}
+/* FIX PRODUCT CARD INSIDE CATEGORY GRID */
+.products-grid .product-card-minimal {
+  width: 100%;
+  min-width: 100%;
+  height: 420px; /* keep consistent card height */
+}
+.products-grid .product-image {
+  background: #fff;
+}
+@media (min-width: 1280px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

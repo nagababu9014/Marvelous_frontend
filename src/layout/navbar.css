@@ -1,0 +1,721 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* ================= TOP STRIP ================= */
+.top-strip {
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.navbar-inner {
+  max-width: 1440px;
+  margin: auto;
+  height: 64px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0 24px;
+  gap: 32px;
+}
+
+/* ================= BRAND ================= */
+.brand {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ================= CATEGORIES ================= */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.categories a {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.categories a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -18px;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: 0.2s;
+}
+
+.categories a:hover::after,
+.categories .active::after {
+  width: 100%;
+}
+
+.categories .last {
+  color: #e32b2b;
+}
+
+/* ================= SEARCH + ICONS ================= */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f2f2f2;
+  height: 36px;
+  padding: 0px 10px;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 140px;
+  font-size: 13px;
+}
+
+.search-box button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ================= CART ================= */
+.cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #000;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+/* ================= MOBILE ================= */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: flex;
+  }
+}
+
+
+/* Mobile only */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .mobile-menu.show {
+    display: block;
+  }
+}
+/* ================= MOBILE NAVBAR (FIXED) ================= */
+
+
+
+/* Hamburger */
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+
+/* Push page content down */
+@media (max-width: 768px) {
+  body {
+    padding-top: 88px;  /* 32px strip + 56px navbar */
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 88px; /* 32 + 56 */
+  }
+}
+.top-strip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 32px;
+  z-index: 1100;
+}
+/* ===== MOBILE HEADER ===== */
+
+
+
+/* ===== MOBILE MENU ===== */
+/* ===== MOBILE MENU (TOP LAYER) ===== */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 3000; /* 🔥 higher than header */
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.show {
+  left: 0;
+}
+
+
+
+
+/* Header */
+/* ===== MOBILE MENU HEADER (FIXED) ===== */
+/* ===== MOBILE MENU HEADER ===== */
+.mobile-menu-header {
+  height: 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #eee;
+  z-index: 1;
+}
+
+.menu-logo {
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: 16px;
+}
+
+.mobile-menu-header button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+/* Links */
+.mobile-menu-links a {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+
+/* Footer */
+.mobile-menu-footer {
+  margin-top: auto;
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.mobile-menu-footer a {
+  display: block;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.country {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* Push content down */
+@media (max-width: 768px) {
+  body {
+    padding-top: 88px;
+  }
+}
+
+/* ===== MOBILE HEADER LAYOUT ===== */
+
+/* ===== MOBILE HEADER ===== */
+
+
+
+/* Desktop vs Mobile visibility */
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: block; }
+
+  body {
+    padding-top: 88px; /* top strip + mobile header */
+  }
+}
+/* ===== DESKTOP FIX FOR FIXED TOP STRIP ===== */
+@media (min-width: 769px) {
+  .navbar {
+    margin-top: 32px; /* same height as top-strip */
+  }
+}
+/* ================= MOBILE HEADER (ADIDAS STYLE) ================= */
+@media (max-width: 768px) {
+  .mobile-navbar {
+    position: fixed;
+    top: 32px;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+    z-index: 1050;
+  }
+
+  /* LEFT ICONS */
+  .mobile-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* RIGHT ICONS */
+  .mobile-icons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* LOGO — TRUE CENTER */
+  .mobile-logo-img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-logo-img img {
+    height: 35px;
+    object-fit: contain;
+  }
+}
+/* MOBILE CENTER LOGO TEXT */
+@media (max-width: 768px) {
+  .mobile-logo-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+}
+/* CATEGORY WRAPPER */
+.category-item {
+  position: relative;
+}
+
+/* MEGA MENU CONTAINER */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  display: flex;
+  gap: 60px;
+  padding: 40px 80px;
+  border-top: 1px solid #eee;
+  z-index: 2000;
+}
+
+/* COLUMN */
+.mega-column {
+  min-width: 180px;
+}
+
+/* COLUMN TITLE */
+.mega-column h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* LINKS */
+.mega-column a {
+  display: block;
+  font-size: 13px;
+  padding: 6px 0;
+  color: #000;
+}
+
+.mega-column a:hover {
+  text-decoration: underline;
+}
+.search-box {
+  position: relative;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+.search-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: #f9fafb;
+}
+
+.search-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.search-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search-price {
+  font-size: 13px;
+  color: #6b7280;
+}
+/* ================= MOBILE SEARCH ================= */
+/* MOBILE SEARCH BAR — FIX */
+.mobile-search-bar {
+  position: fixed;
+  top: 99px; 
+  /* 35px top-strip + ~30px welcome-bar + 64px navbar */
+
+  left: 0;
+  right: 0;
+
+  background: #fff;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+
+  z-index: 2100; /* 🔥 higher than navbar */
+}
+
+.mobile-search-bar input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+}
+
+.mobile-search-dropdown {
+  margin-top: 6px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.mobile-search-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.mobile-search-item:hover {
+  background: #f9fafb;
+}
+
+.mobile-search-item img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+/* MOBILE SEARCH INPUT ROW */
+.mobile-search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* INPUT */
+.mobile-search-input-wrap input {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+}
+
+/* CLOSE BUTTON */
+.mobile-search-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 6px;
+}
+.user-menu-wrapper {
+  position: relative;
+}
+
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  width: 220px;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  padding: 12px;
+  z-index: 1000;
+}
+
+.menu-item {
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  color: #007bff;
+}
+
+.user-hint {
+  font-size: 12px;
+  color: #777;
+  margin: 8px 0;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 8px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.signup-link {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 8px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.logout {
+  color: red;
+}
+/* FIX DESKTOP NAVBAR */
+/* TOP STRIP */
+.top-strip {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 35px;          /* adjust if needed */
+  z-index: 2000;
+  background: #000;
+  color: #fff;
+}
+
+/* DESKTOP NAVBAR */
+.navbar {
+  position: fixed;
+  top: 5px;             /* SAME as top-strip height */
+  width: 100%;
+  z-index: 1500;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+/* MOBILE NAVBAR */
+.mobile-navbar {
+  position: fixed;
+  top: 35px;
+  width: 100%;
+  z-index: 1500;
+  background: #fff;
+}
+
+/* PUSH PAGE CONTENT DOWN */
+body {
+  padding-top: 120px;   /* 35px + navbar height (~80px) */
+}
+.welcome-bar {
+  position: fixed;
+  top: 35px;               /* BELOW top-strip */
+  left: 0;
+  width: 100%;
+
+  background: #fafafa;
+  color: #222;
+  font-size: 14px;
+  padding: 6px 0;
+  text-align: center;
+  letter-spacing: 0.3px;
+
+  z-index: 1800;           /* BETWEEN strip & navbar */
+  animation: fadeInDown 0.6s ease;
+}
+
+.welcome-bar span {
+  color: #000;
+  font-weight: 600;
+}
+
+.navbar {
+  position: fixed;
+  top: 20px;     /* 35px strip + 30px welcome bar */
+  width: 100%;
+  z-index: 1500;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+body {
+  padding-top: 160px;  /* strip + welcome + navbar */
+}
+.mobile-navbar {
+  position: fixed;
+  top: 60px;           /* SAME as desktop */
+  height: 64px;
+  width: 100%;
+
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 2000;
+}
+/* Hide animation for top strip & welcome bar */
+.hide-bar {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+/* Smooth default state */
+.top-strip,
+.welcome-bar {
+  transition: all 0.35s ease;
+}
+/* Hide navbar on scroll down */
+.hide-navbar {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+/* Smooth animation */
+.navbar,
+.mobile-navbar {
+  transition: all 0.35s ease;
+}
+.signin-link {
+  cursor: pointer;
+  text-decoration: underline;
+  margin: 0 4px;
+}
+
+.signin-link:hover {
+  color: #000;
+}
+@media (max-width: 768px) {
+  body {
+    padding-top: 155px;
+    /* strip + welcome + navbar + search */
+  }
+}
+.hide-navbar {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+.mobile-search-bar {
+  transition: all 0.35s ease;
+}
+.subcategory-link {
+  cursor: pointer;
+  display: block;
+  padding: 6px 10px;
+}
+
+.subcategory-link:hover {
+  background: #f5f5f5;
+  color: #000;
+}

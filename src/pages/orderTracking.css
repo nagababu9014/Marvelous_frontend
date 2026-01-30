@@ -1,0 +1,51 @@
+.tracking-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+}
+
+.order-meta {
+  background: #f8f8f8;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.timeline {
+  position: relative;
+  border-left: 3px solid #ddd;
+  padding-left: 25px;
+}
+
+.timeline-step {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline-step .circle {
+  width: 14px;
+  height: 14px;
+  background: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  left: -31px;
+  top: 4px;
+}
+
+.timeline-step.done .circle {
+  background: #22c55e;
+}
+
+.timeline-step.done .status {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.status {
+  font-size: 15px;
+}
+
+.time {
+  font-size: 12px;
+  color: #777;
+}

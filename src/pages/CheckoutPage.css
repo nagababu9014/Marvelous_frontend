@@ -1,0 +1,250 @@
+/* ================= BASE ================= */
+.checkout-page {
+  display: grid;
+  grid-template-columns: 2.7fr 1fr;
+  gap: 40px;
+  max-width: 1280px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ================= LEFT ================= */
+.checkout-left h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+/* ================= ADDRESS FORM ================= */
+.address-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.address-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+.address-form input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Desktop spans */
+.address-form input[name="address_line1"],
+.address-form input[name="address_line2"] {
+  grid-column: span 2;
+}
+
+/* ================= ORDER ITEMS ================= */
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.checkout-item h4 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.checkout-item p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.checkout-subtotal {
+  font-weight: 600;
+}
+
+/* ================= SUMMARY ================= */
+.checkout-summary {
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  background: #fff;
+  border-radius: 6px;
+  height: fit-content;
+}
+
+.checkout-summary h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 700;
+  color: #b12704;
+  margin-top: 12px;
+}
+
+.checkout-summary hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 12px 0;
+}
+
+/* ================= BUTTON ================= */
+.place-order-btn {
+  width: 100%;
+  margin-top: 16px;
+  background: #ffa41c;
+  border: 1px solid #ff8f00;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+  .checkout-page {
+    grid-template-columns: 1.8fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .checkout-page {
+    grid-template-columns: 1fr;
+    margin: 20px auto;
+    padding: 0 16px;
+  }
+
+  /* Address form becomes single column */
+  .address-form {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .address-form input {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  /* Reset spans */
+  .address-form input[name="address_line1"],
+  .address-form input[name="address_line2"] {
+    grid-column: span 1;
+  }
+
+  /* Order items stack */
+  .checkout-item {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .checkout-subtotal {
+    align-self: flex-end;
+  }
+
+  /* Summary comes last */
+  .checkout-summary {
+    margin-top: 20px;
+  }
+
+  .place-order-btn {
+    padding: 16px;
+    font-size: 17px;
+  }
+}
+/* ================= SAVED ADDRESSES ================= */
+.saved-address {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.saved-address p {
+  font-size: 14px;
+  color: #111827;
+  line-height: 1.4;
+}
+
+.saved-address button {
+  background: #ffd814;
+  border: 1px solid #fcd200;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.saved-address button:hover {
+  background: #f7ca00;
+}
+
+/* ✅ Selected address (Amazon-style highlight) */
+.saved-address.active {
+  border: 2px solid #ff9900;
+  background: #fffaf0;
+}
+
+/* ================= ADD NEW ADDRESS BUTTON ================= */
+.checkout-left > button {
+  margin: 16px 0;
+  background: transparent;
+  border: 1px dashed #9ca3af;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  color: #374151;
+}
+
+.checkout-left > button:hover {
+  background: #f9fafb;
+}
+
+/* ================= EMAIL INPUT ================= */
+.checkout-left input[type="email"] {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+.checkout-left input[type="email"]:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* ================= DISABLED PLACE ORDER ================= */
+.place-order-btn:disabled {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}

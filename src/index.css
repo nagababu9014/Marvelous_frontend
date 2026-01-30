@@ -1,0 +1,158 @@
+/* =========================
+   DESIGN SYSTEM – ROOT
+   ========================= */
+
+:root {
+  /* Fonts */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Colors */
+  --color-primary: #e11d48;          /* premium red */
+  --color-primary-hover: #be123c;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+  --color-bg: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+
+  /* UI */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+
+  /* Typography */
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-weight: 400;
+
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   GLOBAL RESET
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button {
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  padding: 0.6em 1.4em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.3);
+}
+
+/* =========================
+   LIGHT MODE ONLY (CLEAN)
+   ========================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f172a;
+    --color-surface: #020617;
+    --color-text: #e5e7eb;
+    --color-muted: #9ca3af;
+    --color-border: #1f2933;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  background: #ffffff;
+  padding-top: 110px; 
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* 🔥 prevents side scroll */
+}
