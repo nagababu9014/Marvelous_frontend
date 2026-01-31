@@ -25,6 +25,10 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Footer from "./pages/Footer";
 import { AuthContext } from "./context/AuthContext";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
+import CancellationPolicy from "./pages/CancellationPolicy";
 
 export default function AppContent() {
   const { loading, setLoading } = useContext(LoaderContext);
@@ -100,6 +104,11 @@ if (authLoading) {
     <Route path="/Contact" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+<Route path="/privacy-policy" element={<PrivacyPolicy />} />
+<Route path="/refund-policy" element={<RefundPolicy />} />
+<Route path="/cancellation-policy" element={<CancellationPolicy />} />
+
       </Routes>
       <Footer />
     </>

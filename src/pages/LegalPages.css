@@ -1,0 +1,81 @@
+/* ===============================
+   LEGAL PAGES (Terms, Privacy, Refund, Cancellation)
+   =============================== */
+
+.legal-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #ffffff;
+  color: #1f2937; /* dark gray */
+  line-height: 1.7;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* Page Title */
+.legal-container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+/* Meta info (Website, Date) */
+.legal-meta {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* Section headings */
+.legal-container h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+/* Paragraphs */
+.legal-container p {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* Lists */
+.legal-container ul {
+  margin-left: 20px;
+  margin-bottom: 12px;
+}
+
+.legal-container ul li {
+  font-size: 16px;
+  margin-bottom: 6px;
+  list-style-type: disc;
+}
+
+/* Links */
+.legal-container a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 20px 16px;
+  }
+
+  .legal-container h1 {
+    font-size: 26px;
+  }
+
+  .legal-container h2 {
+    font-size: 18px;
+  }
+
+  .legal-container p,
+  .legal-container ul li {
+    font-size: 15px;
+  }
+}

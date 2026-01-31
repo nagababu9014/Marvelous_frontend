@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaWhatsapp,
@@ -20,21 +21,23 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* LINKS */}
+        {/* QUICK LINKS */}
         <div className="footer-links">
           <h4>Quick Links</h4>
-          <a href="/">Home</a>
-          <a href="/about">About Us</a>
-          <a href="/cart">Cart</a>
-          <a href="/my-orders">My Orders</a>
+          <Link to="/">Home</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/cart">Cart</Link>
+          <Link to="/my-orders">My Orders</Link>
         </div>
 
+        {/* CUSTOMER CARE */}
         <div className="footer-links">
           <h4>Customer Care</h4>
-          <a href="/contact">Contact Us</a>
-          <a href="#">Shipping Policy</a>
-          <a href="#">Returns & Refunds</a>
-          <a href="#">Privacy Policy</a>
+          <Link to="/contact">Contact Us</Link>
+          <Link to="/terms-and-conditions">Terms & Conditions</Link>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/refund-policy">Returns & Refunds</Link>
+          <Link to="/cancellation-policy">Cancellation Policy</Link>
         </div>
 
         {/* SOCIAL */}
@@ -44,6 +47,7 @@ const Footer = () => {
             <a
               href="https://www.instagram.com/"
               target="_blank"
+              rel="noopener noreferrer"
               className="instagram"
             >
               <FaInstagram />
@@ -52,13 +56,14 @@ const Footer = () => {
             <a
               href="https://wa.me/918000000000"
               target="_blank"
+              rel="noopener noreferrer"
               className="whatsapp"
             >
               <FaWhatsapp />
             </a>
 
             <a
-              href="mailto:support@marvelousmerchandise.com"
+              href="mailto:support@marvelousmart.com"
               className="email"
             >
               <FaEnvelope />
@@ -67,6 +72,7 @@ const Footer = () => {
             <a
               href="https://x.com/"
               target="_blank"
+              rel="noopener noreferrer"
               className="x"
             >
               <FaXTwitter />
@@ -77,7 +83,7 @@ const Footer = () => {
 
       {/* BOTTOM */}
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Marvelous Merchandise. All rights reserved.
+        © {new Date().getFullYear()} Marvelous Mart. All rights reserved.
       </div>
     </footer>
   );
