@@ -22,19 +22,19 @@ const ContactHelp = () => {
           <div className="help-item">
             <FaSms />
             <h4>Text Us</h4>
-            <a href="tel:8338326827">833-832-6827</a>
+            <a href="tel: 512-969-0000"> 512-969-0000</a>
           </div>
 
           <div className="help-item">
             <FaPhoneAlt />
             <h4>Call</h4>
-            <a href="tel:8338326827">833-Marvelous</a>
+            <a href="tel: 512-969-0000">833-Marvelous</a>
           </div>
 
           <div className="help-item">
             <FaEnvelope />
             <h4>Email</h4>
-            <a href="mailto:support@marvelousmerchandise.com">
+            <a href="mailto:Contact@marvelousmart.com">
               GET A RESPONSE IN 48 HOURS
             </a>
           </div>

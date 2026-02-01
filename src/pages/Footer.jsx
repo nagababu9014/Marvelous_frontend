@@ -5,6 +5,7 @@ import {
   FaWhatsapp,
   FaEnvelope,
   FaXTwitter,
+  FaFacebookF,
 } from "react-icons/fa6";
 
 const Footer = () => {
@@ -45,7 +46,7 @@ const Footer = () => {
           <h4>Follow Us On</h4>
           <div className="social-icons">
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/marvelousmart_official/"
               target="_blank"
               rel="noopener noreferrer"
               className="instagram"
@@ -53,30 +54,31 @@ const Footer = () => {
               <FaInstagram />
             </a>
 
-            <a
-              href="https://wa.me/918000000000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp"
-            >
-              <FaWhatsapp />
-            </a>
+           <a
+                href="https://wa.me/15129690000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp"
+              >
+                <FaWhatsapp />
+              </a>
+
 
             <a
-              href="mailto:support@marvelousmart.com"
+              href="mailto:Contact@marvelousmart.com"
               className="email"
             >
               <FaEnvelope />
             </a>
-
-            <a
-              href="https://x.com/"
+          <a
+              href="https://www.facebook.com/profile.php?id=61586438484932"
               target="_blank"
               rel="noopener noreferrer"
-              className="x"
+              className="facebook"
             >
-              <FaXTwitter />
+              <FaFacebookF />
             </a>
+            
           </div>
         </div>
       </div>
