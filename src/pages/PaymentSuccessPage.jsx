@@ -1,17 +1,20 @@
-import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import api from "../api/axios";
 import { useCart } from "../context/CartContext";
 import "./PaymentSuccessPage.css";
 
 const PaymentSuccessPage = () => {
   const { orderId } = useParams();
-  const navigate = useNavigate();
   const { fetchCartCount } = useCart();
+
+  const [seconds, setSeconds] = useState(6); // 🔥 countdown timer
 
   useEffect(() => {
     let attempts = 0;
+    let finished = false;
 
+    // 🔁 Poll backend for webhook completion
     const interval = setInterval(async () => {
       attempts++;
 
@@ -19,34 +22,51 @@ const PaymentSuccessPage = () => {
         const res = await api.get(`orders/${orderId}/`);
 
         if (res.data.payment_status === "PAID") {
+          finished = true;
           clearInterval(interval);
-
-          // 🔥 backend confirmed webhook finished
           await fetchCartCount();
-          navigate("/my-orders");
         }
 
-        // stop polling after 15 seconds
         if (attempts >= 10) {
           clearInterval(interval);
-          navigate("/my-orders");
         }
 
-      } catch (err) {
+      } catch {
         clearInterval(interval);
-        navigate("/my-orders");
       }
-
     }, 1500);
 
-    return () => clearInterval(interval);
+    // ⏱️ Countdown for UI (6 seconds)
+    const timer = setInterval(() => {
+      setSeconds(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+
+          // 🔥 HARD REFRESH AFTER WAIT
+          window.location.href = "/my-orders";
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(timer);
+    };
   }, [orderId]);
 
   return (
     <div className="success-page">
       <div className="success-card">
+
+        {/* ✅ Spinner */}
+        <div className="loader"></div>
+
         <h2>Payment Successful</h2>
         <p>Confirming your order…</p>
+        <p>Please wait <b>{seconds}</b> seconds</p>
+
       </div>
     </div>
   );
