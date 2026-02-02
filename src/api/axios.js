@@ -7,11 +7,6 @@ export const MEDIA_URL = "https://api.marvelousmart.com";
 const api = axios.create({
   baseURL: API_URL,
   withCredentials: false, // ✅ JWT ONLY
-  headers: {
-    "Cache-Control": "no-cache, no-store, must-revalidate",
-    "Pragma": "no-cache",
-    "Expires": "0",
-  },
 });
 
 api.interceptors.request.use(
@@ -27,6 +22,17 @@ api.interceptors.request.use(
 
     if (guestId) {
       config.headers["X-GUEST-ID"] = guestId;
+    }
+
+    // 🔥 Disable cache ONLY for sensitive/dynamic APIs
+    if (
+      config.url?.includes("orders") ||
+      config.url?.includes("cart") ||
+      config.url?.includes("payments")
+    ) {
+      config.headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+      config.headers["Pragma"] = "no-cache";
+      config.headers["Expires"] = "0";
     }
 
     return config;
