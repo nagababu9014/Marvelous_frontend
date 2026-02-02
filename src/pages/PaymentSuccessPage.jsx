@@ -7,6 +7,10 @@ const PaymentSuccessPage = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
   const { fetchCartCount } = useCart();
+useEffect(() => {
+  api.get("orders/")
+    .then(res => setOrders(res.data));
+}, []);
 
   useEffect(() => {
     const timer = setTimeout(async () => {
@@ -17,6 +21,17 @@ const PaymentSuccessPage = () => {
 
     return () => clearTimeout(timer);
   }, [navigate]);
+useEffect(() => {
+  const interval = setInterval(async () => {
+    const res = await api.get(`orders/${orderId}/`);
+    if (res.data.payment_status === "PAID") {
+      clearInterval(interval);
+      fetchCartCount();
+    }
+  }, 1500);
+
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div className="success-page">

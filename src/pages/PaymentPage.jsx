@@ -48,9 +48,11 @@ const payNow = async () => {
   }
 
   // ✅ Payment succeeded
-  if (result.paymentIntent.status === "succeeded") {
-    navigate(`/payment-success/${orderId}`);
-  }
+    if (result.paymentIntent.status === "succeeded") {
+      await fetchCartCount();   // 🔥 update cart context
+      navigate(`/payment-success/${orderId}`);
+    }
+
 };
 
 
