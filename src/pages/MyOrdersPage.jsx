@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import "./MyOrdersPage.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MyOrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-  const location = useLocation(); // 🔥 ONLY ADDITION
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-
     return date.toLocaleDateString("en-IN", {
       day: "numeric",
       month: "short",
@@ -19,12 +17,12 @@ const MyOrdersPage = () => {
   };
 
   useEffect(() => {
-    api.get("orders/")
+    api.get(`orders/?t=${Date.now()}`) // 🔥 cache-buster
       .then(res => {
-        console.log("ORDERS:", res.data);
+        console.log("ORDERS (fresh):", res.data);
         setOrders(res.data);
       });
-  }, [location.pathname]); // 🔥 ONLY CHANGE (was [])
+  }, []);
 
   return (
     <div className="orders-page">
@@ -43,7 +41,6 @@ const MyOrdersPage = () => {
             {order.items?.map((item, index) => (
               <div key={index} className="order-item">
                 <img src={item.image} alt={item.name} />
-
                 <div className="order-item-info">
                   <p className="item-name">{item.name}</p>
                   <p className="item-qty">Qty: {item.quantity}</p>
@@ -55,7 +52,6 @@ const MyOrdersPage = () => {
               Order status: <b>{order.order_status}</b>
             </p>
 
-            {/* ✅ TRACK BUTTON PER ORDER */}
             <button
               className="track-btn"
               onClick={() => navigate(`/order/${order.id}/track`)}
@@ -71,7 +67,6 @@ const MyOrdersPage = () => {
 
         </div>
       ))}
-
     </div>
   );
 };

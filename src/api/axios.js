@@ -7,6 +7,11 @@ export const MEDIA_URL = "https://api.marvelousmart.com";
 const api = axios.create({
   baseURL: API_URL,
   withCredentials: false, // ✅ JWT ONLY
+  headers: {
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0",
+  },
 });
 
 api.interceptors.request.use(
