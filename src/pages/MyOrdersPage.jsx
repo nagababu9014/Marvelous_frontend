@@ -7,6 +7,15 @@ const MyOrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
+  // 🔥 FORCE ONE-TIME RELOAD AFTER PAYMENT
+  useEffect(() => {
+    const shouldReload = sessionStorage.getItem("forceOrdersReload");
+    if (shouldReload) {
+      sessionStorage.removeItem("forceOrdersReload");
+      window.location.reload();
+    }
+  }, []);
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-IN", {
@@ -17,9 +26,8 @@ const MyOrdersPage = () => {
   };
 
   useEffect(() => {
-    api.get(`orders/?t=${Date.now()}`) // 🔥 cache-buster
+    api.get("orders/")
       .then(res => {
-        console.log("ORDERS (fresh):", res.data);
         setOrders(res.data);
       });
   }, []);
@@ -30,7 +38,6 @@ const MyOrdersPage = () => {
 
       {orders.map(order => (
         <div key={order.id} className="order-card">
-
           <div className="order-left">
             <h4>
               Order • <span className="order-date">
@@ -58,13 +65,11 @@ const MyOrdersPage = () => {
             >
               Track Order
             </button>
-
           </div>
 
           <div className="order-total">
             ${order.total_amount}
           </div>
-
         </div>
       ))}
     </div>
