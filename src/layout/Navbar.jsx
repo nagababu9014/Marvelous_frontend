@@ -510,7 +510,6 @@ useEffect(() => {
               Returns
             </Link>
 
-            <div className="country">🇮🇳 India</div>
           </div>
       </div>
     </>
