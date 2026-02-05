@@ -29,7 +29,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import CancellationPolicy from "./pages/CancellationPolicy";
-
+import ScrollToTop from "./ScrollToTop";
 export default function AppContent() {
   const { loading, setLoading } = useContext(LoaderContext);
 const { authLoading } = useContext(AuthContext);
@@ -62,7 +62,7 @@ if (authLoading) {
 
       <Navbar />
           {/* 🔥 TOAST CONTAINER (REQUIRED) */}
-
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:id" element={<CategoryPage />} />
