@@ -4,6 +4,7 @@ import api from "../api/axios";
 import "./PaymentPage.css";
 import { useCart } from "../context/CartContext";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+const [cardError, setCardError] = useState("");
 
 
 const PaymentPage = () => {
@@ -86,7 +87,21 @@ const payNow = async () => {
       </div>
         <div className="payment-box">
   <h3>Card Details</h3>
-  <CardElement />
+  <CardElement
+  onChange={(event) => {
+    if (event.error) {
+      setCardError(event.error.message);
+    } else {
+      setCardError("");
+    }
+  }}
+/>
+{cardError && (
+  <div className="card-error">
+    {cardError}
+  </div>
+)}
+
 </div>
 
       {/* PAY BUTTON */}
