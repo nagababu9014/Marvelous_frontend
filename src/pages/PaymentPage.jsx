@@ -4,7 +4,7 @@ import api from "../api/axios";
 import "./PaymentPage.css";
 import { useCart } from "../context/CartContext";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-const [cardError, setCardError] = useState("");
+
 
 
 const PaymentPage = () => {
@@ -14,6 +14,7 @@ const PaymentPage = () => {
 const { fetchCartCount } = useCart();
 const stripe = useStripe();
 const elements = useElements();
+const [cardError, setCardError] = useState("");
 
   useEffect(() => {
     api.get("cart/checkout/")
