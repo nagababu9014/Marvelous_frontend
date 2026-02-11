@@ -2,19 +2,24 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import "./MyOrdersPage.css";
 import { useNavigate } from "react-router-dom";
-
+import { useCart } from "../context/CartContext";
 const MyOrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
-
+const { fetchCartCount } = useCart();
   // 🔥 FORCE ONE-TIME RELOAD AFTER PAYMENT
-  useEffect(() => {
-    const shouldReload = sessionStorage.getItem("forceOrdersReload");
-    if (shouldReload) {
-      sessionStorage.removeItem("forceOrdersReload");
-      window.location.reload();
-    }
-  }, []);
+useEffect(() => {
+  const shouldReload = sessionStorage.getItem("forceOrdersReload");
+
+  if (shouldReload) {
+    sessionStorage.removeItem("forceOrdersReload");
+
+    // small delay to allow webhook to finish
+    setTimeout(() => {
+      fetchCartCount();
+    }, 1500);
+  }
+}, []);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
