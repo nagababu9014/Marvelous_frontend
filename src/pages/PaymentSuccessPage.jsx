@@ -1,78 +1,83 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import { useCart } from "../context/CartContext";
 import "./PaymentSuccessPage.css";
 
 const PaymentSuccessPage = () => {
   const { orderId } = useParams();
+  const navigate = useNavigate();
   const { fetchCartCount } = useCart();
 
-  const [seconds, setSeconds] = useState(6); // 🔥 countdown timer
+  const [seconds, setSeconds] = useState(6);
 
   useEffect(() => {
+    if (!orderId) {
+      console.error("❌ No orderId in URL");
+      navigate("/");
+      return;
+    }
+
     let attempts = 0;
-    let finished = false;
+    let interval;
 
-    // 🔁 Poll backend for webhook completion
-    const interval = setInterval(async () => {
-      attempts++;
-
+    const checkOrderStatus = async () => {
       try {
         const res = await api.get(`orders/${orderId}/`);
 
         if (res.data.payment_status === "PAID") {
-          finished = true;
           clearInterval(interval);
+
+          // ✅ refresh cart count after webhook cleared cart
           await fetchCartCount();
+
+          // small delay for UX smoothness
+          setTimeout(() => {
+            sessionStorage.setItem("forceOrdersReload", "1");
+            navigate("/my-orders");
+          }, 1000);
         }
 
-        if (attempts >= 10) {
-          clearInterval(interval);
-        }
+      } catch (error) {
+        console.error("Order fetch error:", error);
+      }
+    };
 
-      } catch {
+    interval = setInterval(() => {
+      attempts++;
+      checkOrderStatus();
+
+      if (attempts >= 10) {
         clearInterval(interval);
       }
     }, 1500);
 
-    // ⏱️ Countdown for UI (6 seconds)
-const navigate = useNavigate();
+    return () => clearInterval(interval);
 
-const timer = setInterval(() => {
-  setSeconds(prev => {
-    if (prev <= 1) {
-      clearInterval(timer);
+  }, [orderId, navigate, fetchCartCount]);
 
-      sessionStorage.setItem("forceOrdersReload", "1");
+  // ⏳ Countdown UI only
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-      navigate("/my-orders");   // ✅ correct redirect
-
-      return 0;
-    }
-    return prev - 1;
-  });
-}, 1000);
-
-
-
-    return () => {
-      clearInterval(interval);
-      clearInterval(timer);
-    };
-  }, [orderId]);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="success-page">
       <div className="success-card">
-
-        {/* ✅ Spinner */}
         <div className="loader"></div>
-
         <h2>Payment Successful</h2>
         <p>Confirming your order…</p>
         <p>Please wait <b>{seconds}</b> seconds</p>
-
       </div>
     </div>
   );
