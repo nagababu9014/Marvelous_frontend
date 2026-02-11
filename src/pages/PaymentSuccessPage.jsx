@@ -37,21 +37,23 @@ const PaymentSuccessPage = () => {
     }, 1500);
 
     // ⏱️ Countdown for UI (6 seconds)
+const navigate = useNavigate();
+
 const timer = setInterval(() => {
   setSeconds(prev => {
     if (prev <= 1) {
       clearInterval(timer);
 
-      // 🔥 tell MyOrders page to reload ONCE
       sessionStorage.setItem("forceOrdersReload", "1");
 
-      // 🔥 redirect
-      window.location.href = "/my-orders";
+      navigate("/my-orders");   // ✅ correct redirect
+
       return 0;
     }
     return prev - 1;
   });
 }, 1000);
+
 
 
     return () => {
