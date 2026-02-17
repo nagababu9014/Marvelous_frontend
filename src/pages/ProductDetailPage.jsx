@@ -13,11 +13,13 @@ const ProductDetailPage = () => {
   const [similarProducts, setSimilarProducts] = useState([]);
 const { fetchCartCount } = useCart();
   const navigate = useNavigate();
-
+const [activeImage, setActiveImage] = useState(0);
   // ✅ NEW
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
-
+useEffect(() => {
+  setActiveImage(0);
+}, [product]);
   useEffect(() => {
     api.get(`products/${id}/`)
       .then(res => {
@@ -79,9 +81,28 @@ const handleBuyNow = async () => {
       <div className="product-detail-page">
 
         <div className="product-image-section">
-          <img src={product.image} alt={product.name} />
-        </div>
 
+  <div className="thumbnail-column">
+    {product.images?.map((img, index) => (
+      <img
+        key={index}
+        src={img.image}
+        alt="thumb"
+        className={`thumbnail ${activeImage === index ? "active" : ""}`}
+        onClick={() => setActiveImage(index)}
+      />
+    ))}
+  </div>
+
+  <div className="main-image-container">
+    <img
+      src={product.images?.[activeImage]?.image}
+      alt={product.name}
+      className="main-image"
+    />
+  </div>
+
+</div>
         <div className="product-info-section">
           <h1 className="product-title">{product.name}</h1>
           <p className="product-desc">{product.description}</p>
