@@ -135,18 +135,48 @@ const handleLeave = () => {
 
   {/* CENTER INFO AREA */}
   <div className="product-info-section">
-    <h1 className="product-title">{product.name}</h1>
 
-    <div className="price-box">
-      <span className="price">${product.price}</span>
-      {product.mrp && <span className="mrp">${product.mrp}</span>}
-    </div>
+  <h1 className="product-title">{product.name}</h1>
 
-    {/* FULL DESCRIPTION */}
-    <div className="full-description">
-      {product.description}
+  {/* ⭐ Rating */}
+  <div className="rating-row">
+    <span className="stars">★★★★★</span>
+    <span className="rating-value">4.9</span>
+    <span className="rating-count">(2,345 ratings)</span>
+  </div>
+
+  <div className="price-box">
+    <span className="price">${product.price}</span>
+    {product.mrp && <span className="mrp">${product.mrp}</span>}
+  </div>
+
+  {/* 📦 Stock */}
+  <div className={`stock ${product.stock > 0 ? "in-stock" : "out-stock"}`}>
+    {product.stock > 0 ? "In Stock" : "Currently unavailable"}
+  </div>
+
+  {/* 🚚 Delivery */}
+  <div className="delivery-box">
+    <p><strong>FREE Delivery</strong> Tomorrow</p>
+    <p className="delivery-sub">Order within 6 hrs 12 mins</p>
+  </div>
+
+  {/* 🎨 Variant Example */}
+  <div className="variant-section">
+    <p className="variant-title">Color:</p>
+    <div className="variant-options">
+      <button className="variant-btn active">Green</button>
+      <button className="variant-btn">Black</button>
+      <button className="variant-btn">Blue</button>
     </div>
   </div>
+
+  {/* Full Description */}
+  <div className="full-description">
+    {product.description}
+  </div>
+
+</div>
 
   {/* RIGHT BUY BOX */}
   <div className="product-buy-box">
