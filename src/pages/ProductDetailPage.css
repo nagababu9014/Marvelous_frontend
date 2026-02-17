@@ -568,3 +568,161 @@
     padding-bottom: 100px;
   }
 }
+/* ================= PREMIUM DESKTOP LAYOUT ================= */
+
+.product-detail-page {
+  display: grid;
+  grid-template-columns: 1.7fr 1.3fr 0.9fr;
+  gap: 80px;
+  padding: 80px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+/* ================= IMAGE AREA ================= */
+
+.product-image-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-image-wrapper {
+  position: relative;
+  background: #fff;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-image {
+  max-height: 550px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Hover slight scale (premium feel) */
+.main-image-wrapper:hover .main-image {
+  transform: scale(1.03);
+}
+
+/* Horizontal thumbnails */
+.thumbnail-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 25px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #fafafa;
+  padding: 8px;
+  transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+  background: #f0f0f0;
+}
+
+.thumbnail.active {
+  border: 2px solid #111;
+}
+
+/* ================= INFO AREA ================= */
+
+.product-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-title {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+
+.price-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: 600;
+  color: #111;
+}
+
+.mrp {
+  font-size: 16px;
+  text-decoration: line-through;
+  color: #888;
+}
+
+.full-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+  max-width: 500px;
+}
+
+/* ================= BUY BOX ================= */
+
+.product-buy-box {
+  background: #fafafa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  height: fit-content;
+  position: sticky;
+  top: 140px;
+}
+
+.qty-control {
+  margin-bottom: 20px;
+}
+
+.qty-control button {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.add-cart,
+.buy-now {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.add-cart {
+  background: #111;
+  color: #fff;
+  border: none;
+  margin-bottom: 12px;
+}
+
+.buy-now {
+  background: #fff;
+  border: 1px solid #111;
+  color: #111;
+}
+
+.add-cart:hover {
+  background: #000;
+}
+
+.buy-now:hover {
+  background: #f3f3f3;
+}
