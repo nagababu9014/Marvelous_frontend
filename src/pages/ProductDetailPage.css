@@ -469,3 +469,102 @@
   grid-template-columns: 1.6fr 1.2fr 0.9fr;
   gap: 60px;
 }
+
+/* ================= PREMIUM MOBILE DESIGN ================= */
+
+@media (max-width: 768px) {
+
+  .product-detail-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 20px;
+  }
+
+  /* FULL WIDTH IMAGE */
+  .main-image-wrapper {
+    border: none;
+    padding: 20px 15px 10px 15px;
+    min-height: auto;
+  }
+
+  .main-image {
+    width: 100%;
+    max-height: 380px;
+  }
+
+  /* PREMIUM SCROLLABLE THUMBNAILS */
+  .thumbnail-row {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 10px 15px;
+    gap: 10px;
+  }
+
+  .thumbnail {
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
+
+  /* PRODUCT INFO */
+  .product-info-section {
+    padding: 0 15px;
+  }
+
+  .product-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+  .full-description {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* BUY BOX AS PREMIUM CARD */
+  .product-buy-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    padding: 12px 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .qty-control {
+    margin: 0;
+  }
+
+  .add-cart,
+  .buy-now {
+    flex: 1;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  .add-cart {
+    background: #ffd814;
+  }
+
+  .buy-now {
+    background: #ff9900;
+  }
+
+  /* Prevent content hidden under fixed buttons */
+  .similar-products-section {
+    padding-bottom: 100px;
+  }
+}
