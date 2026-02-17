@@ -78,69 +78,75 @@ const handleBuyNow = async () => {
 
   return (
     <>
-      <div className="product-detail-page">
+  <div className="product-detail-page">
 
-        <div className="product-image-section">
+  {/* LEFT IMAGE AREA */}
+  <div className="product-image-section">
 
-  <div className="thumbnail-column">
-    {product.images?.map((img, index) => (
+    <div className="thumbnail-column">
+      {product.images?.map((img, index) => (
+        <img
+          key={index}
+          src={img.image}
+          alt="thumb"
+          className={`thumbnail ${activeImage === index ? "active" : ""}`}
+          onClick={() => setActiveImage(index)}
+        />
+      ))}
+    </div>
+
+    <div className="main-image-container">
       <img
-        key={index}
-        src={img.image}
-        alt="thumb"
-        className={`thumbnail ${activeImage === index ? "active" : ""}`}
-        onClick={() => setActiveImage(index)}
+        src={product.images?.[activeImage]?.image}
+        alt={product.name}
+        className="main-image"
       />
-    ))}
+    </div>
+
   </div>
 
-  <div className="main-image-container">
-    <img
-      src={product.images?.[activeImage]?.image}
-      alt={product.name}
-      className="main-image"
-    />
+  {/* CENTER INFO AREA */}
+  <div className="product-info-section">
+    <h1 className="product-title">{product.name}</h1>
+
+    <div className="price-box">
+      <span className="price">${product.price}</span>
+      {product.mrp && <span className="mrp">${product.mrp}</span>}
+    </div>
+
+    {/* FULL DESCRIPTION */}
+    <div className="full-description">
+      {product.description}
+    </div>
+  </div>
+
+  {/* RIGHT BUY BOX */}
+  <div className="product-buy-box">
+    <div className="qty-control">
+      <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
+      <span>{qty}</span>
+      <button onClick={() => setQty(q => q + 1)}>+</button>
+    </div>
+
+    <button
+      className="add-cart"
+      onClick={handleAddToCart}
+      disabled={adding}
+    >
+      {adding ? "Adding..." : "Add to Cart"}
+    </button>
+
+    <button
+      className="buy-now"
+      onClick={handleBuyNow}
+      disabled={adding}
+    >
+      {adding ? "Processing..." : "Buy Now"}
+    </button>
   </div>
 
 </div>
-        <div className="product-info-section">
-          <h1 className="product-title">{product.name}</h1>
-          <p className="product-desc">{product.description}</p>
 
-          <div className="price-box">
-            <span className="price">${product.price}</span>
-            {product.mrp && <span className="mrp">₹{product.mrp}</span>}
-          </div>
-        </div>
-
-        <div className="product-buy-box">
-
-          {/* ✅ NEW: Quantity controls (unstyled) */}
-<div className="qty-control">
-  <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
-  <span>{qty}</span>
-  <button onClick={() => setQty(q => q + 1)}>+</button>
-</div>
-
-
-          <button
-            className="add-cart"
-            onClick={handleAddToCart}
-            disabled={adding}
-          >
-            {adding ? "Adding..." : "Add to Cart"}
-          </button>
-
-          <button
-  className="buy-now"
-  onClick={handleBuyNow}
-  disabled={adding}
->
-  {adding ? "Processing..." : "Buy Now"}
-</button>
-
-        </div>
-      </div>
 
       {similarProducts.length > 0 && (
         <div className="similar-products-section">
