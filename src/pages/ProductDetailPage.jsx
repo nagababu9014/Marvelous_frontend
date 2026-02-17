@@ -142,7 +142,7 @@ const handleLeave = () => {
   <div className="rating-row">
     <span className="stars">★★★★★</span>
     <span className="rating-value">4.9</span>
-    <span className="rating-count">(2,345 ratings)</span>
+    <span className="rating-count">(23 ratings)</span>
   </div>
 
   <div className="price-box">
@@ -157,19 +157,10 @@ const handleLeave = () => {
 
   {/* 🚚 Delivery */}
   <div className="delivery-box">
-    <p><strong>FREE Delivery</strong> Tomorrow</p>
-    <p className="delivery-sub">Order within 6 hrs 12 mins</p>
+    <p><strong>FREE Delivery</strong></p>
   </div>
 
-  {/* 🎨 Variant Example */}
-  <div className="variant-section">
-    <p className="variant-title">Color:</p>
-    <div className="variant-options">
-      <button className="variant-btn active">Green</button>
-      <button className="variant-btn">Black</button>
-      <button className="variant-btn">Blue</button>
-    </div>
-  </div>
+
 
   {/* Full Description */}
   <div className="full-description">
