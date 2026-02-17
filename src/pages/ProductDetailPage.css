@@ -400,3 +400,72 @@
     margin-top: 20px;
   }
 }
+/* ================= AMAZON STYLE IMAGE ================= */
+
+.product-image-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-image-wrapper {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  padding: 40px;
+  background: #fff;
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-image {
+  max-height: 500px;
+  object-fit: contain;
+}
+
+/* Horizontal thumbnails */
+.thumbnail-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  padding: 6px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+  border-color: #000;
+}
+
+.thumbnail.active {
+  border: 2px solid #000;
+}
+
+/* Zoom Preview Panel */
+.zoom-preview {
+  position: absolute;
+  right: -650px;
+  top: 0;
+  width: 600px;
+  height: 600px;
+  border: 1px solid #ddd;
+  background-repeat: no-repeat;
+  background-size: 200%;
+  pointer-events: none;
+  background-color: #fff;
+  z-index: 10;
+}
+.product-detail-page {
+  display: grid;
+  grid-template-columns: 1.6fr 1.2fr 0.9fr;
+  gap: 60px;
+}

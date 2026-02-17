@@ -14,6 +14,7 @@ const ProductDetailPage = () => {
 const { fetchCartCount } = useCart();
   const navigate = useNavigate();
 const [activeImage, setActiveImage] = useState(0);
+const [zoomStyle, setZoomStyle] = useState(null);
   // ✅ NEW
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
@@ -70,6 +71,19 @@ const handleBuyNow = async () => {
   navigate("/cart");   // ✅ ALWAYS GO TO CART
   setAdding(false);
 };
+const handleZoom = (e) => {
+  const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+  const x = ((e.clientX - left) / width) * 100;
+  const y = ((e.clientY - top) / height) * 100;
+
+  setZoomStyle({
+    backgroundPosition: `${x}% ${y}%`,
+  });
+};
+
+const handleLeave = () => {
+  setZoomStyle(null);
+};
 
 
   if (!product) {
@@ -81,29 +95,43 @@ const handleBuyNow = async () => {
   <div className="product-detail-page">
 
   {/* LEFT IMAGE AREA */}
-  <div className="product-image-section">
+ <div className="product-image-section">
 
-    <div className="thumbnail-column">
-      {product.images?.map((img, index) => (
-        <img
-          key={index}
-          src={img.image}
-          alt="thumb"
-          className={`thumbnail ${activeImage === index ? "active" : ""}`}
-          onClick={() => setActiveImage(index)}
-        />
-      ))}
-    </div>
+  <div className="main-image-wrapper"
+       onMouseMove={handleZoom}
+       onMouseLeave={handleLeave}
+  >
+    <img
+      src={product.images?.[activeImage]?.image}
+      alt={product.name}
+      className="main-image"
+    />
 
-    <div className="main-image-container">
-      <img
-        src={product.images?.[activeImage]?.image}
-        alt={product.name}
-        className="main-image"
+    {zoomStyle && (
+      <div
+        className="zoom-preview"
+        style={{
+          backgroundImage: `url(${product.images?.[activeImage]?.image})`,
+          ...zoomStyle
+        }}
       />
-    </div>
-
+    )}
   </div>
+
+  <div className="thumbnail-row">
+    {product.images?.map((img, index) => (
+      <img
+        key={index}
+        src={img.image}
+        alt="thumb"
+        className={`thumbnail ${activeImage === index ? "active" : ""}`}
+        onClick={() => setActiveImage(index)}
+      />
+    ))}
+  </div>
+
+</div>
+
 
   {/* CENTER INFO AREA */}
   <div className="product-info-section">
