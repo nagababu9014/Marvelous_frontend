@@ -68,7 +68,14 @@ const isOutOfStock = product.stock === 0;
   className={`product-image ${isOutOfStock ? "out-of-stock" : ""}`}
   onClick={() => navigate(`/product/${product.id}`)}
 >
-  <img src={product.image} alt={product.name} />
+  <img
+    src={
+      product.images?.length > 0
+        ? product.images[0].image
+        : "/placeholder.png"
+    }
+    alt={product.name}
+  />
 
   {isOutOfStock && (
     <div className="out-of-stock-badge">
@@ -76,6 +83,7 @@ const isOutOfStock = product.stock === 0;
     </div>
   )}
 </div>
+
 
 
       {/* CONTENT */}
