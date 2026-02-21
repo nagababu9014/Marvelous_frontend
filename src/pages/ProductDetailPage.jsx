@@ -14,6 +14,7 @@ const ProductDetailPage = () => {
 const { fetchCartCount } = useCart();
   const navigate = useNavigate();
   const [activeImage, setActiveImage] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   // ✅ NEW
   const [qty, setQty] = useState(1);
@@ -81,37 +82,38 @@ useEffect(() => {
     <>
       <div className="product-detail-page">
 
-      <div className="product-image-section premium-gallery">
+    <div className="product-image-section premium-gallery">
 
-        {/* LEFT THUMBNAILS */}
-        <div className="thumbnail-column">
-          {product.images?.map((img, index) => (
-            <img
-              key={index}
-              src={img.image}
-              alt=""
-              className={`thumbnail-img ${
-                activeImage === index ? "active-thumb" : ""
-              }`}
-              onClick={() => setActiveImage(index)}
-            />
-          ))}
-        </div>
-
-        {/* MAIN IMAGE */}
-        <div className="main-image-wrapper">
+      {/* LEFT THUMBNAILS */}
+      <div className="thumbnail-column">
+        {product.images?.map((img, index) => (
           <img
-            src={
-              product.images?.length > 0
-                ? product.images[activeImage]?.image
-                : product.image
-            }
-            alt={product.name}
-            className="main-product-image"
+            key={index}
+            src={img.image}
+            alt=""
+            className={`thumbnail-img ${
+              activeImage === index ? "active-thumb" : ""
+            }`}
+            onClick={() => setActiveImage(index)}
           />
-        </div>
-
+        ))}
       </div>
+
+      {/* MAIN IMAGE */}
+      <div className="main-image-wrapper">
+<img
+  src={
+    product.images?.length > 0
+      ? product.images[activeImage]?.image
+      : product.image
+  }
+  alt={product.name}
+  className="main-product-image"
+  onClick={() => setShowModal(true)}
+/>
+      </div>
+
+    </div>
 
         <div className="product-info-section">
           <h1 className="product-title">{product.name}</h1>
@@ -162,6 +164,54 @@ useEffect(() => {
           </div>
         </div>
       )}
+      {showModal && (
+  <div className="image-modal">
+
+    <button
+      className="close-modal"
+      onClick={() => setShowModal(false)}
+    >
+      ✕
+    </button>
+
+    <button
+      className="modal-nav left"
+      onClick={() =>
+        setActiveImage((prev) =>
+          prev === 0
+            ? product.images.length - 1
+            : prev - 1
+        )
+      }
+    >
+      ‹
+    </button>
+
+    <img
+      src={
+        product.images?.length > 0
+          ? product.images[activeImage]?.image
+          : product.image
+      }
+      alt=""
+      className="modal-image"
+    />
+
+    <button
+      className="modal-nav right"
+      onClick={() =>
+        setActiveImage((prev) =>
+          prev === product.images.length - 1
+            ? 0
+            : prev + 1
+        )
+      }
+    >
+      ›
+    </button>
+
+  </div>
+)}
     </>
   );
 };
