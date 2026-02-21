@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
-// import "./ProductDetailPage.css";
+import "./ProductDetailPage.css";
 import ProductCard from "../components/Products/ProductCard";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +13,12 @@ const ProductDetailPage = () => {
   const [similarProducts, setSimilarProducts] = useState([]);
 const { fetchCartCount } = useCart();
   const navigate = useNavigate();
-const [activeImage, setActiveImage] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
+
   // ✅ NEW
   const [qty, setQty] = useState(1);
   const [adding, setAdding] = useState(false);
-useEffect(() => {
-  setActiveImage(0);
-}, [product]);
+
   useEffect(() => {
     api.get(`products/${id}/`)
       .then(res => {
@@ -70,153 +69,101 @@ const handleBuyNow = async () => {
   navigate("/cart");   // ✅ ALWAYS GO TO CART
   setAdding(false);
 };
-
+useEffect(() => {
+  setActiveImage(0);
+}, [product]);
 
   if (!product) {
     return <p className="loading">Loading product...</p>;
   }
 
-return (
-  <div className="bg-gray-100 min-h-screen py-10">
-    <div className="max-w-7xl mx-auto px-4 md:px-6">
+  return (
+    <>
+      <div className="product-detail-page">
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-2xl shadow-sm p-6 md:p-10">
+      <div className="product-image-section premium-gallery">
 
-        {/* ================= IMAGE SECTION ================= */}
-        <div className="space-y-4">
+        {/* LEFT THUMBNAILS */}
+        <div className="thumbnail-column">
+          {product.images?.map((img, index) => (
+            <img
+              key={index}
+              src={img.image}
+              alt=""
+              className={`thumbnail-img ${
+                activeImage === index ? "active-thumb" : ""
+              }`}
+              onClick={() => setActiveImage(index)}
+            />
+          ))}
+        </div>
 
+        {/* MAIN IMAGE */}
+        <div className="main-image-wrapper">
           <img
-            src={product.images?.[activeImage]?.image}
+            src={
+              product.images?.length > 0
+                ? product.images[activeImage]?.image
+                : product.image
+            }
             alt={product.name}
-            className="w-full h-[450px] object-cover rounded-xl"
+            className="main-product-image"
           />
+        </div>
 
-          {/* Thumbnails */}
-          <div className="flex gap-3">
-            {product.images?.map((img, index) => (
-              <img
-                key={index}
-                src={img.image}
-                alt=""
-                onClick={() => setActiveImage(index)}
-                className={`h-20 w-20 object-cover rounded-lg cursor-pointer border-2 ${
-                  activeImage === index
-                    ? "border-black"
-                    : "border-transparent"
-                }`}
-              />
-            ))}
+      </div>
+
+        <div className="product-info-section">
+          <h1 className="product-title">{product.name}</h1>
+          <p className="product-desc">{product.description}</p>
+
+          <div className="price-box">
+            <span className="price">${product.price}</span>
+            {product.mrp && <span className="mrp">₹{product.mrp}</span>}
           </div>
         </div>
 
-        {/* ================= PRODUCT INFO ================= */}
-        <div className="space-y-6">
+        <div className="product-buy-box">
 
-          <h1 className="text-3xl font-bold">{product.name}</h1>
+          {/* ✅ NEW: Quantity controls (unstyled) */}
+<div className="qty-control">
+  <button onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
+  <span>{qty}</span>
+  <button onClick={() => setQty(q => q + 1)}>+</button>
+</div>
 
-          {/* Rating */}
-          <div className="flex items-center gap-2">
-            <span className="text-yellow-500 font-medium">
-              ⭐ 4.9
-            </span>
-            <span className="text-gray-500 text-sm">
-              (23 ratings)
-            </span>
-          </div>
 
-          {/* Price */}
-          <div className="flex items-center gap-4">
-            <span className="text-3xl font-bold text-green-600">
-              ₹{product.price}
-            </span>
+          <button
+            className="add-cart"
+            onClick={handleAddToCart}
+            disabled={adding}
+          >
+            {adding ? "Adding..." : "Add to Cart"}
+          </button>
 
-            {product.mrp && (
-              <span className="line-through text-gray-400 text-lg">
-                ₹{product.mrp}
-              </span>
-            )}
-          </div>
-
-          {/* Stock */}
-          <div>
-            {product.stock > 0 ? (
-              <span className="text-green-600 font-medium">In Stock</span>
-            ) : (
-              <span className="text-red-600 font-medium">Out of Stock</span>
-            )}
-          </div>
-
-          {/* Description */}
-          <p className="text-gray-600 leading-relaxed">
-            {product.description}
-          </p>
-
-          {/* Quantity */}
-          <div className="flex items-center gap-4">
-            <span className="font-medium">Quantity:</span>
-            <div className="flex items-center border rounded-lg overflow-hidden">
-              <button
-                onClick={() => setQty(q => Math.max(1, q - 1))}
-                className="px-3 py-1"
-              >
-                -
-              </button>
-              <span className="px-4">{qty}</span>
-              <button
-                onClick={() => setQty(q => q + 1)}
-                className="px-3 py-1"
-              >
-                +
-              </button>
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-4 pt-4">
-            <button
-              onClick={handleAddToCart}
-              disabled={adding}
-              className="flex-1 bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition"
-            >
-              {adding ? "Adding..." : "Add to Cart"}
-            </button>
-
-            <button
-              onClick={handleBuyNow}
-              disabled={adding}
-              className="flex-1 border border-black py-3 rounded-xl hover:bg-gray-100 transition"
-            >
-              {adding ? "Processing..." : "Buy Now"}
-            </button>
-          </div>
-
-          {/* Delivery Info */}
-          <div className="border-t pt-6 space-y-2 text-sm text-gray-600">
-            <p>🚚 Free delivery</p>
-            <p>🔁 7 Days easy return</p>
-            <p>💳 Secure payment</p>
-          </div>
+          <button
+  className="buy-now"
+  onClick={handleBuyNow}
+  disabled={adding}
+>
+  {adding ? "Processing..." : "Buy Now"}
+</button>
 
         </div>
       </div>
 
-      {/* ================= SIMILAR PRODUCTS ================= */}
       {similarProducts.length > 0 && (
-        <div className="mt-16">
-          <h2 className="text-xl font-semibold mb-8">
-            Similar Products
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="similar-products-section">
+          <h2>Similar Products</h2>
+          <div className="similar-products-grid">
             {similarProducts.map(prod => (
               <ProductCard key={prod.id} product={prod} />
             ))}
           </div>
         </div>
       )}
-    </div>
-  </div>
-);
+    </>
+  );
 };
 
 export default ProductDetailPage;
